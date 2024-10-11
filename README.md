@@ -1,3 +1,9 @@
 # Mad1_project
-MAD I project (Sep term 2024)
-jksahdskahdasjdhksahdakhdas
+# jksahdskahdasjdhksahdakhdas
+# pokemon 
+# go
+# is
+# a 
+# very 
+# good
+# game 
