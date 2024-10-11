@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    {%if (user.priority==1) %}
+        <h1>Admin Page</h1>
+        <h2>Welcome:{{user.username}}</h2>
+    {%elif (user.priority==2)%}
+        <h1>Working Professional Page</h1>
+        <h2>Welcome:{{user.username}}</h2>
+    {%else%}
+    <h1>Customer Page</h1>
+    <h2>Welcome:{{user.username}}</h2>
+    {% endif %}
+</body>
+</html>

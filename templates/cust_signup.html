@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Signup</title>
+</head>
+<body>
+    <h1 align="center">Customer Signup</h1>
+    <div>
+        <form action="/cust_signup.html" method="POST">
+            <div>
+                Email ID (Username):
+                <input type="email" name="email" required>
+            </div>
+            <br>
+            <div>
+                Password:
+                <input type="password" name="password" required>
+            </div>
+            <br>
+            <div>
+                Fullname:
+                <input type="text" name="fname">
+            </div>
+            <br>
+            <div>
+                Address: 
+                <br>
+                <br>
+                <textarea placeholder="Enter your address" cols="25" rows="10"></textarea>
+            </div>
+            <br>
+            <div>
+                Pin Code:
+                <input type="number" name="PIN" maxlength="6">
+            </div>
+            <br>
+            <div>
+                <input type="submit" value="Register">
+            </div>
+            <br>
+            <div>
+                <a href="home_login.html">Login Here / Click here to return to home login page</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

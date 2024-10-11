@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Professional Signup</title>
+</head>
+<body>
+    <h1 align="center">Service Professional Signup</h1>
+    <div>
+        <form action="/prof_signup.html" method="POST">
+            <div>
+                Email ID (Username):
+                <input type="email" name="email" required>
+            </div>
+            <br>
+            <div>
+                Password:
+                <input type="password" name="password" required>
+            </div>
+            <br>
+            <div>
+                Fullname:
+                <input type="text" name="fname">
+            </div>
+            <br>
+            <div>
+                Service Name: 
+                    <select name="service" id="service" required>
+                        <option value="">---Select Service---</option>
+                        <option value="">S1</option>
+                        <option value="">S2</option>
+                        <option value="">S3</option>
+                        <option value="">S4</option>
+                        <option value="">S5</option>
+                    </select>
+            </div>
+            <br>
+            <div>
+                Experiance (in yrs):
+                <input type="number" name="exp" maxlength="2">
+            </div>
+            <br>
+            <div>
+                Attach documents (Single pdf) :
+                <br>
+                <input type="file">
+            </div>
+            <br>
+            <div>
+                Address: 
+                <br>
+                <br>
+                <textarea placeholder="Enter your address" cols="25" rows="10"></textarea>
+            </div>
+            <br>
+            <div>
+                Pin Code:
+                <input type="number" name="PIN" maxlength="6">
+            </div>
+            <br>
+            <div>
+                <input type="submit" value="Register">
+            </div>
+            <br>
+            <div>
+                <a href="home_login.html">Login Here / Click here to return to home login page</a>
+            </div>
+        </form>
+    </div>
+
+    
+</body>
+</html>
