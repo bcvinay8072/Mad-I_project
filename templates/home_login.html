@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A-Z Household Services</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_homepage.css') }}">
 </head>
 <body>
-    <h1 align="center">A-Z Household Services</h1>
-    <div>
+    <h1 class="heading">A-Z Household Services</h1>
+    <div class="container">
         <form action='/' method="POST">
-            <div align="left">
-            Registered Email:
-            <input type="email" name="email" required>  
+            <div class="form-group">
+                Registered Email:
+                <input type="email" name="email" required>
             </div>
             <br>
-            <div align="left">
+            <div class="form-group">
                 Password:
-            <input type="password" name="password" required>
+                <input type="password" name="password" required>
             </div>
             <br>
             <div>
-                <input type="submit" value="Login">
+                <input type="submit" value="Login" class="btn">
             </div>
         </form>
         <br>

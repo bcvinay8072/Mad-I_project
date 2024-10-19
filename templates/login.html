@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    {%if (user.priority==1) %}
+    {% if user.priority == 1 %}
         <h1>Admin Page</h1>
-        <h2>Welcome:{{user.username}}</h2>
-    {%elif (user.priority==2)%}
+        <h2>Welcome: {{ user.username }}</h2>
+    {% elif user.priority == 2 %}
         <h1>Working Professional Page</h1>
-        <h2>Welcome:{{user.username}}</h2>
-    {%else%}
-    <h1>Customer Page</h1>
-    <h2>Welcome:{{user.username}}</h2>
+        <h2>Welcome: {{ user.username }}</h2>
+    {% else %}
+        <h1>Customer Page</h1>
+        <h2>Welcome: {{ user.username }}</h2>
     {% endif %}
 </body>
 </html>

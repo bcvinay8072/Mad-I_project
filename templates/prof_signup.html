@@ -4,63 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Professional Signup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_prof_signup.css') }}">
 </head>
 <body>
-    <h1 align="center">Service Professional Signup</h1>
-    <div>
+    <h1>Service Professional Signup</h1>
+    <div class="container">
         <form action="/prof_signup.html" method="POST">
-            <div>
+            <div class="form-group">
                 Email ID (Username):
                 <input type="email" name="email" required>
             </div>
             <br>
-            <div>
+            <div class="form-group">
                 Password:
                 <input type="password" name="password" required>
             </div>
             <br>
-            <div>
+            <div class="form-group">
                 Fullname:
                 <input type="text" name="fname">
             </div>
             <br>
-            <div>
-                Service Name: 
-                    <select name="service" id="service" required>
-                        <option value="">---Select Service---</option>
-                        <option value="">S1</option>
-                        <option value="">S2</option>
-                        <option value="">S3</option>
-                        <option value="">S4</option>
-                        <option value="">S5</option>
-                    </select>
+            <div class="form-group">
+                Service Name:
+                <select name="service" id="service" required>
+                    <option value="">---Select Service---</option>
+                    <option value="S1">S1</option>
+                    <option value="S2">S2</option>
+                    <option value="S3">S3</option>
+                    <option value="S4">S4</option>
+                    <option value="S5">S5</option>
+                </select>
             </div>
             <br>
-            <div>
-                Experiance (in yrs):
+            <div class="form-group">
+                Experience (in yrs):
                 <input type="number" name="exp" maxlength="2">
             </div>
             <br>
-            <div>
-                Attach documents (Single pdf) :
+            <div class="form-group">
+                Attach documents (Single pdf):
                 <br>
                 <input type="file">
             </div>
             <br>
-            <div>
-                Address: 
+            <div class="form-group">
+                Address:
                 <br>
-                <br>
-                <textarea placeholder="Enter your address" cols="25" rows="10"></textarea>
+                <textarea placeholder="Enter your address" cols="25" rows="5"></textarea>
             </div>
             <br>
-            <div>
+            <div class="form-group">
                 Pin Code:
                 <input type="number" name="PIN" maxlength="6">
             </div>
             <br>
             <div>
-                <input type="submit" value="Register">
+                <input type="submit" value="Register" class="btn">
             </div>
             <br>
             <div>
@@ -68,7 +68,5 @@
             </div>
         </form>
     </div>
-
-    
 </body>
 </html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_admin.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Admin Dashboard</h1>
+        <nav class="tabs">
+            <a href="#">Home</a>
+            <a href="#">Search</a>
+            <a href="#">Summary</a>
+            <a href="#">Logout</a>
+        </nav>
+        <div class="content">
+            <section>
+                <h2>Services</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Service Name</th>
+                            <th>Base Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Service rows -->
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <h2>Professionals</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Professional rows -->
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <h2>Service Requests</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Request Details</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Request rows -->
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
