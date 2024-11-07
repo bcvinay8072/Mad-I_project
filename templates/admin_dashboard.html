@@ -18,6 +18,7 @@
         <div class="content">
             <section>
                 <h2>Services</h2>
+                <a href="{{ url_for('add_service') }}" class="btn">Add New Service</a>
                 <table>
                     <thead>
                         <tr>
@@ -28,7 +29,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Service rows -->
+                        {% for service in services %}
+                        <tr>
+                            <td>{{ service.id }}</td>
+                            <td>{{ service.name }}</td>
+                            <td>{{ service.base_price }}</td>
+                            <td>
+                                <a href="{{ url_for('edit_service', service_id=service.id) }}" class="btn">Edit</a>
+                                <a href="{{ url_for('delete_service', service_id=service.id) }}" class="btn">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </section>
@@ -45,7 +56,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Professional rows -->
+                        {% for professional in professionals %}
+                        <tr>
+                            <td>{{ professional.id }}</td>
+                            <td>{{ professional.name }}</td>
+                            <td>{{ professional.username }}</td>
+                            <td>{{ professional.phone }}</td>
+                            <td>
+                                <a href="{{ url_for('accept_professional', professional_id=professional.id) }}" class="btn">Accept</a>
+                                <a href="{{ url_for('reject_professional', professional_id=professional.id) }}" class="btn">Reject</a>
+                                <a href="{{ url_for('delete_professional', professional_id=professional.id) }}" class="btn">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </section>
@@ -60,7 +83,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Request rows -->
+                        {% for request in requests %}
+                        <tr>
+                            <td>{{ request.id }}</td>
+                            <td>{{ request.request_details }}</td>
+                            <td><button>Delete</button></td>
+                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </section>

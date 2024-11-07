@@ -29,11 +29,9 @@
                 Service Name:
                 <select name="service" id="service" required>
                     <option value="">---Select Service---</option>
-                    <option value="S1">S1</option>
-                    <option value="S2">S2</option>
-                    <option value="S3">S3</option>
-                    <option value="S4">S4</option>
-                    <option value="S5">S5</option>
+                    {% for service in services %}
+                        <option value="{{ service.name }}">{{ service.name }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <br>

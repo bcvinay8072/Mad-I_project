@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Service Request</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/create_request.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Create Service Request</h1>
+    </header>
+    <main>
+        <form method="POST" action="{{ url_for('create_request') }}">
+            <label for="service_id">Select Service:</label>
+            <select name="service_id" id="service_id">
+                {% for service in services %}
+                <option value="{{ service.id }}">{{ service.name }}</option>
+                {% endfor %}
+            </select>
+            <label for="date_of_request">Date of Request:</label>
+            <input type="date" name="date_of_request" id="date_of_request" required>
+            <button type="submit">Create Request</button>
+        </form>
+    </main>
+</body>
+</html>
