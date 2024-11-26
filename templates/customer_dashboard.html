@@ -1,58 +1,88 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/customer_dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cust_dash.css') }}">
 </head>
 <body>
-    <header>
-        <h1>Customer Dashboard</h1>
-    </header>
     <nav>
-        <ul>
-            <li><a href="{{ url_for('customer_dashboard') }}">Home</a></li>
-            <li><a href="{{ url_for('search') }}">Search</a></li>
-            <li><a href="{{ url_for('summary') }}">Summary</a></li>
-            <li><a href="{{ url_for('logout') }}">Logout</a></li>
-        </ul>
+        <a href="{{ url_for('customer_dashboard') }}">Home</a>
+        <a href="{{ url_for('search_services') }}">Search Services</a>
+        <a href="{{ url_for('cust_summary') }}">Summary</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
     </nav>
-    <main>
-        <h2>Welcome, {{ session.username }}!</h2>
-        <p>Use the menu to manage your service requests.</p>
-        <section>
-            <h3>Create New Service Request</h3>
-            <a href="{{ url_for('create_request') }}" class="btn">Create Request</a>
-        </section>
-        <section>
-            <h3>Your Service Requests</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Service</th>
-                        <th>Date of Request</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for request in requests %}
-                    <tr>
-                        <td>{{ request.id }}</td>
-                        <td>{{ request.service.name }}</td>
-                        <td>{{ request.date_of_request }}</td>
-                        <td>{{ request.service_status }}</td>
-                        <td>
-                            <a href="{{ url_for('edit_request', request_id=request.id) }}" class="btn">Edit</a>
-                            <a href="{{ url_for('close_request', request_id=request.id) }}" class="btn">Close</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </section>
-    </main>
+
+    <h1>Customer Dashboard</h1>
+    <h2>Welcome, {{ customer.name }}</h2>
+
+    <h3>Available Services</h3>
+    <ul>
+        
+        {% for service in services %}
+        <li><a href="{{ url_for('create_request', service_id=service.id) }}">{{ service.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h3>Create New Service Request</h3>
+    <form action="{{ url_for('create_request') }}" method="POST">
+        <div class="form-group">
+            <label for="service_id">Service:</label>
+            <select name="service_id" id="service_id" required>
+                {% for service in services %}
+                    <option value="{{ service.id }}">{{ service.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="date_of_request">Date of Request:</label>
+            <input type="date" id="date_of_request" name="date_of_request" required>
+        </div>
+        <div>
+            <button type="submit">Create Request</button>
+        </div>
+    </form>
+
+    <h3>Pending Service Requests</h3>
+    <ul>
+        {% for request in pending_requests %}
+        <li>
+            Service: {{ request.service.name }}<br>
+            Assigned to: {{ request.professional.name if request.professional else 'Unassigned' }}<br>
+            Date of Request: {{ request.date_of_request }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Accepted Service Requests</h3>
+    <ul>
+        {% for request in accepted_requests %}
+        <li>
+            Service: {{ request.service.name }}<br>
+            Assigned to: {{ request.professional.name }}<br>
+            Date of Request: {{ request.date_of_request }}<br>
+            Status: {{ request.service_status }}<br>
+            <form action="{{ url_for('close_request', request_id=request.id) }}" method="GET" style="display:inline;">
+                <button type="submit">Close Request</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Completed Service Requests</h3>
+    <ul>
+        {% for request in completed_requests %}
+        <li>
+            Service: {{ request.service.name }}<br>
+            Assigned to: {{ request.professional.name }}<br>
+            Date of Request: {{ request.date_of_request }}<br>
+            Date of Completion: {{ request.date_of_completion }}<br>
+            Remarks: {{ request.remarks }}<br>
+            Rating: {{ request.rating }}
+        </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

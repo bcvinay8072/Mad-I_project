@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Services</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Search Services</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('customer_dashboard') }}">Home</a></li>
+            <li><a href="{{ url_for('search_services') }}">Search Services</a></li>
+            <li><a href="{{ url_for('cust_summary') }}">Summary</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Search for Services</h2>
+        <form method="GET" action="{{ url_for('search_services') }}">
+            <label for="search_type">Search by:</label>
+            <select name="search_type" id="search_type">
+                <option value="name">Service Name</option>
+                <option value="location">Location</option>
+                <option value="pin_code">Pin Code</option>
+            </select>
+            <label for="search_term">Search Term:</label>
+            <input type="text" name="search_term" id="search_term" required>
+            <button type="submit">Search</button>
+        </form>
+        <h3>Search Results</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Service Name</th>
+                    <th>Base Price</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for service in search_results %}
+                <tr>
+                    <td>{{ service.id }}</td>
+                    <td>{{ service.name }}</td>
+                    <td>{{ service.base_price }}</td>
+                    <td>{{ service.description }}</td>
+                    <td><a href="{{ url_for('create_request', service_id=service.id) }}">Book Now</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

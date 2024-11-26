@@ -1,63 +1,112 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f9;
-    color: #333;
     margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-}
-
-header {
-    width: 100%;
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 0;
-}
-
-h1 {
-    margin: 0;
-    font-size: 2.5rem;
+    padding: 20px;
 }
 
 nav {
-    width: 100%;
-    background-color: #0056b3;
-    padding: 10px 0;
+    background-color: #007BFF;
+    padding: 10px;
+    margin-bottom: 20px;
 }
 
-nav ul {
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    display: inline-block;
+}
+
+nav a:hover {
+    background-color: #0056b3;
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1, h2, h3 {
+    color: #343a40;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.4em;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #007BFF;
+    padding-bottom: 5px;
+}
+
+/* Form and button styles */
+form {
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form select, form input, form button {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    width: 100%;
+}
+
+form button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #218838;
+}
+
+/* List styles */
+ul {
     list-style: none;
     padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
 }
 
-nav ul li {
-    margin: 0 10px;
+ul li {
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
 }
 
-nav ul li a {
-    color: white;
+ul li a {
+    color: #007BFF;
     text-decoration: none;
-    padding: 10px 15px;
-    display: inline-block;
-    border-radius: 5px;
-    background-color: #007BFF;
 }
 
-nav ul li a:hover {
-    background-color: #004494;
+ul li a:hover {
+    text-decoration: underline;
 }
 
-main {
-    flex: 1;
-    width: 100%;
-    max-width: 1200px;
-    padding: 20px;
-    box-sizing: border-box;
+ul li form {
+    display: inline;
+}
+
+ul li form button {
+    width: auto;
+    padding: 5px 10px;
 }

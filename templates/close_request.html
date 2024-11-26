@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Close Service Request</title>
+</head>
+<body>
+    <h1>Close Service Request</h1>
+    <p>Service: {{ request.service.name }}</p>
+    <p>Professional: {{ request.professional.name }}</p>
+    <p>Service Date: {{ request.date_of_request }}</p>
+
+    <form action="{{ url_for('close_request', request_id=request.id) }}" method="POST">
+        <label for="review">Review:</label><br>
+        <textarea id="review" name="review" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="rating">Rating:</label><br>
+        <select id="rating" name="rating" required>
+            <option value="1">1 - Very Poor</option>
+            <option value="2">2 - Poor</option>
+            <option value="3">3 - Average</option>
+            <option value="4">4 - Good</option>
+            <option value="5">5 - Excellent</option>
+        </select><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

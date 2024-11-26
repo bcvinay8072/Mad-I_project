@@ -9,10 +9,10 @@
 <body>
     <h1>Service Professional Signup</h1>
     <div class="container">
-        <form action="/prof_signup.html" method="POST">
+        <form action="{{ url_for('prof_signup') }}" method="POST">
             <div class="form-group">
                 Email ID (Username):
-                <input type="email" name="email" required>
+                <input type="email" name="username" required>
             </div>
             <br>
             <div class="form-group">
@@ -22,12 +22,12 @@
             <br>
             <div class="form-group">
                 Fullname:
-                <input type="text" name="fname">
+                <input type="text" name="name">
             </div>
             <br>
             <div class="form-group">
                 Service Name:
-                <select name="service" id="service" required>
+                <select name="service_type" id="service" required>
                     <option value="">---Select Service---</option>
                     {% for service in services %}
                         <option value="{{ service.name }}">{{ service.name }}</option>
@@ -37,24 +37,24 @@
             <br>
             <div class="form-group">
                 Experience (in yrs):
-                <input type="number" name="exp" maxlength="2">
-            </div>
-            <br>
-            <div class="form-group">
-                Attach documents (Single pdf):
-                <br>
-                <input type="file">
+                <input type="number" name="experience" maxlength="2">
             </div>
             <br>
             <div class="form-group">
                 Address:
                 <br>
-                <textarea placeholder="Enter your address" cols="25" rows="5"></textarea>
+                <textarea name="address" placeholder="Enter your address" cols="25" rows="5"></textarea>
             </div>
             <br>
             <div class="form-group">
                 Pin Code:
-                <input type="number" name="PIN" maxlength="6">
+                <input type="number" name="pin_code" maxlength="6">
+            </div>
+            <br>
+            <div class="form-group">
+                About:
+                <br>
+                <textarea name="about" placeholder="Tell us about yourself" cols="25" rows="5" required></textarea>
             </div>
             <br>
             <div>
@@ -62,7 +62,7 @@
             </div>
             <br>
             <div>
-                <a href="home_login.html">Login Here / Click here to return to home login page</a>
+                <a href="{{ url_for('home_login') }}">Login Here / Click here to return to home login page</a>
             </div>
         </form>
     </div>

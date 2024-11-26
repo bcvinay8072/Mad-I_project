@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Summary</title>
+    <title>Admin Summary</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style_summary.css') }}">
 </head>
 <body>
     <nav>
-        <a href="{{ url_for('customer_dashboard') }}">Home</a>
-        <a href="{{ url_for('search_services') }}">Search Services</a>
-        <a href="{{ url_for('cust_summary') }}">Summary</a>
+        <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('search') }}">Search</a>
+        <a href="{{ url_for('admin_summary') }}">Summary</a>
         <a href="{{ url_for('logout') }}">Logout</a>
     </nav>
 
-    <h1>Service Summary</h1>
+    <h1>Service Request Summary</h1>
     <img src="data:image/png;base64,{{ chart_base64 }}" alt="Service Request Summary Chart">
 </body>
 </html>

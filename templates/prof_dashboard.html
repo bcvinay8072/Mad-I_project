@@ -7,71 +7,63 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/prof_dash.css') }}">
 </head>
 <body>
-    <header>
-        <h1>Professional Dashboard</h1>
-    </header>
     <nav>
-        <ul>
-            <li><a href="{{ url_for('prof_dashboard') }}">Home</a></li>
-        </ul>
+        <a href="{{ url_for('prof_dashboard') }}">Home</a>
+        <a href="{{ url_for('prof_summary') }}">Summary</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
     </nav>
-    <main>
-        <h2>Welcome, Professional!</h2>
-        <p>Use the menu to navigate through the dashboard.</p>
-        <section>
-            <h3>Today's Services</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Customer Name</th>
-                        <th>Contact Phone</th>
-                        <th>Location (Pin Code)</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Example row -->
-                    <tr>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>123-456-7890</td>
-                        <td>110011</td>
-                        <td><a href="#">Accept</a> | <a href="#">Reject</a></td>
-                    </tr>
-                    <!-- More rows can be added dynamically -->
-                </tbody>
-            </table>
-        </section>
-        <section>
-            <h3>Closed Services</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Customer Name</th>
-                        <th>Contact Phone</th>
-                        <th>Location (Pin Code)</th>
-                        <th>Date</th>
-                        <th>Rating</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Example row -->
-                    <tr>
-                        <td>1</td>
-                        <td>Jane Smith</td>
-                        <td>987-654-3210</td>
-                        <td>560001</td>
-                        <td>2023-03-25</td>
-                        <td>4</td>
-                        <td><a href="#">View</a> | <a href="#">Delete</a></td>
-                    </tr>
-                    <!-- More rows can be added dynamically -->
-                </tbody>
-            </table>
-        </section>
-    </main>
+
+    <h1>Professional Dashboard</h1>
+    <h2>Welcome, {{ professional.name }}</h2>
+
+    <h3>Pending Service Requests</h3>
+    <ul>
+        {% for request in pending_requests %}
+        <li>
+            Service: {{ request.service.name }}<br>
+            Requested by: {{ request.customer.name }}<br>
+            Date of Request: {{ request.date_of_request }}<br>
+            <form action="{{ url_for('accept_request', request_id=request.id) }}" method="POST" style="display:inline;">
+                <button type="submit">Accept</button>
+            </form>
+            <form action="{{ url_for('reject_request', request_id=request.id) }}" method="POST" style="display:inline;">
+                <button type="submit">Reject</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Accepted Service Requests</h3>
+    <ul>
+        {% for request in accepted_requests %}
+        <li>
+            Service: {{ request.service.name }}<br>
+            Requested by: {{ request.customer.name }}<br>
+            Date of Request: {{ request.date_of_request }}<br>
+            <form action="{{ url_for('update_request_status', request_id=request.id) }}" method="POST">
+                <label for="status_{{ request.id }}">Update Status:</label>
+                <select name="status" id="status_{{ request.id }}">
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+                <button type="submit">Update</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Completed Service Requests</h3>
+    <ul>
+        {% for request in completed_requests %}
+        <li>
+            Service: {{ request.service.name }}<br>
+            Requested by: {{ request.customer.name }}<br>
+            Date of Request: {{ request.date_of_request }}<br>
+            Date of Completion: {{ request.date_of_completion }}<br>
+            Review: {{ request.remarks }}<br>
+            Rating: {{ request.rating }}
+        </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

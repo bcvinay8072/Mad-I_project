@@ -11,11 +11,45 @@
         <h1>Admin Dashboard</h1>
         <nav class="tabs">
             <a href="#">Home</a>
-            <a href="#">Search</a>
-            <a href="#">Summary</a>
-            <a href="#">Logout</a>
+            <a href="{{ url_for('search_professionals') }}">Search</a>
+            <a href="{{ url_for('admin_summary') }}">Summary</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
         </nav>
         <div class="content">
+            <section>
+                <h2>Professionals</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for professional in professionals %}
+                        <tr>
+                            <td>{{ professional.id }}</td>
+                            <td>{{ professional.name }}</td>
+                            <td>{{ professional.username }}</td>
+                            <td>{{ professional.phone }}</td>
+                            <td>
+                                <a href="{{ url_for('accept_professional', professional_id=professional.id) }}" class="btn">Accept</a>
+                                <a href="{{ url_for('reject_professional', professional_id=professional.id) }}" class="btn">Reject</a>
+                                <a href="{{ url_for('delete_professional', professional_id=professional.id) }}" class="btn">Delete</a>
+                                <form action="{{ url_for('toggle_block_professional', professional_id=professional.id) }}" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn">
+                                        {{ 'Unblock' if professional.blocked else 'Block' }}
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
             <section>
                 <h2>Services</h2>
                 <a href="{{ url_for('add_service') }}" class="btn">Add New Service</a>
@@ -44,7 +78,7 @@
                 </table>
             </section>
             <section>
-                <h2>Professionals</h2>
+                <h2>Customers</h2>
                 <table>
                     <thead>
                         <tr>
@@ -56,16 +90,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for professional in professionals %}
+                        {% for customer in customers %}
                         <tr>
-                            <td>{{ professional.id }}</td>
-                            <td>{{ professional.name }}</td>
-                            <td>{{ professional.username }}</td>
-                            <td>{{ professional.phone }}</td>
+                            <td>{{ customer.id }}</td>
+                            <td>{{ customer.name }}</td>
+                            <td>{{ customer.username }}</td>
+                            <td>{{ customer.phone }}</td>
                             <td>
-                                <a href="{{ url_for('accept_professional', professional_id=professional.id) }}" class="btn">Accept</a>
-                                <a href="{{ url_for('reject_professional', professional_id=professional.id) }}" class="btn">Reject</a>
-                                <a href="{{ url_for('delete_professional', professional_id=professional.id) }}" class="btn">Delete</a>
+                                <form action="{{ url_for('toggle_block_customer', customer_id=customer.id) }}" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn">
+                                        {{ 'Unblock' if customer.blocked else 'Block' }}
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         {% endfor %}
@@ -79,6 +115,9 @@
                         <tr>
                             <th>ID</th>
                             <th>Request Details</th>
+                            <th>Created By</th>
+                            <th>Assigned To</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -86,8 +125,15 @@
                         {% for request in requests %}
                         <tr>
                             <td>{{ request.id }}</td>
-                            <td>{{ request.request_details }}</td>
-                            <td><button>Delete</button></td>
+                            <td>{{ request.service.name }}</td>
+                            <td>{{ request.customer.name }}</td>
+                            <td>{{ request.professional.name if request.professional else 'Unassigned' }}</td>
+                            <td>{{ request.service_status }}</td>
+                            <td>
+                                <form action="{{ url_for('delete_request', request_id=request.id) }}" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

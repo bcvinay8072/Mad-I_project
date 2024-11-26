@@ -11,11 +11,11 @@
         <h1>Create Service Request</h1>
     </header>
     <main>
-        <form method="POST" action="{{ url_for('create_request') }}">
+        <form method="POST" action="{{ url_for('create_request', service_id=selected_service_id) }}">
             <label for="service_id">Select Service:</label>
             <select name="service_id" id="service_id">
                 {% for service in services %}
-                <option value="{{ service.id }}">{{ service.name }}</option>
+                <option value="{{ service.id }}" {% if service.id == selected_service_id %}selected{% endif %}>{{ service.name }}</option>
                 {% endfor %}
             </select>
             <label for="date_of_request">Date of Request:</label>

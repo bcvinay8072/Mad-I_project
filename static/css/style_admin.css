@@ -34,7 +34,7 @@ h1 {
 
 .tabs a {
     color: white;
-    background-color: #007BFF;
+    background-color: #ff1e00f4;
     padding: 10px 15px;
     text-decoration: none;
     margin: 0 10px;
@@ -42,7 +42,7 @@ h1 {
 }
 
 .tabs a:hover {
-    background-color: #0056b3;
+    background-color: #b33300;
 }
 
 /* Content section styles */
@@ -83,7 +83,7 @@ th {
 
 /* Button styles */
 .btn {
-    background-color: #007BFF;
+    background-color: #ff1900f7;
     color: white;
     padding: 10px;
     border: none;
@@ -96,7 +96,7 @@ th {
 }
 
 .btn:hover {
-    background-color: #0056b3;
+    background-color: #b31200;
 }
 
 /* Form group styles */

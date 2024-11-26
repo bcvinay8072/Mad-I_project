@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Professionals</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_admin.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Search Professionals</h1>
+        <nav class="tabs">
+            <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+        <div class="content">
+            <section>
+                <h2>Search</h2>
+                <form action="{{ url_for('search_professionals') }}" method="GET">
+                    <input type="text" name="search_query" placeholder="Search by name or email" value="{{ search_query }}">
+                    <button type="submit">Search</button>
+                </form>
+            </section>
+            <section>
+                <h2>Professionals</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for professional in professionals %}
+                        <tr>
+                            <td>{{ professional.id }}</td>
+                            <td>{{ professional.name }}</td>
+                            <td>{{ professional.username }}</td>
+                            <td>
+                                <form action="{{ url_for('toggle_block_professional', professional_id=professional.id) }}" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn">
+                                        {{ 'Unblock' if professional.blocked else 'Block' }}
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
