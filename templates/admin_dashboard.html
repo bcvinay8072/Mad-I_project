@@ -24,7 +24,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Phone</th>
+                            <th>Rating</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -34,7 +34,7 @@
                             <td>{{ professional.id }}</td>
                             <td>{{ professional.name }}</td>
                             <td>{{ professional.username }}</td>
-                            <td>{{ professional.phone }}</td>
+                            <td>{{ professional.rating }}</td>
                             <td>
                                 <a href="{{ url_for('accept_professional', professional_id=professional.id) }}" class="btn">Accept</a>
                                 <a href="{{ url_for('reject_professional', professional_id=professional.id) }}" class="btn">Reject</a>
@@ -85,7 +85,6 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Phone</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -95,7 +94,6 @@
                             <td>{{ customer.id }}</td>
                             <td>{{ customer.name }}</td>
                             <td>{{ customer.username }}</td>
-                            <td>{{ customer.phone }}</td>
                             <td>
                                 <form action="{{ url_for('toggle_block_customer', customer_id=customer.id) }}" method="POST" style="display:inline;">
                                     <button type="submit" class="btn">

@@ -167,7 +167,7 @@ def cust_signup():
         new_user = AppUser(username=email, password=password, priority=3, customer_id=cust_1.id)
         db.session.add(new_user)
         db.session.commit()
-        return render_template("sign_up.html", email=email, password=password)
+        return redirect(url_for('home_login'))
 
 @app.route('/prof_signup.html', methods=['GET', 'POST'])
 def prof_signup():
@@ -176,7 +176,7 @@ def prof_signup():
         password = request.form.get('password')
         name = request.form.get('name')
         loc = request.form.get('address')
-        pin = request.form.get('pincode')
+        pin = request.form.get('pin_code')
         service_type = request.form.get('service_type')
         experience = request.form.get('experience')
         phone_no = request.form.get('phone_no')
@@ -199,7 +199,10 @@ def prof_signup():
         )
         db.session.add(new_professional)
         db.session.commit()
-        return redirect(url_for('login'))
+        new_user=AppUser(username=username,password=password,priority=2,professional_id=new_professional.id)
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for('home_login'))
 
     # Query services and pass them to the template
     services = Service.query.all()
